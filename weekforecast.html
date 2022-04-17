@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        *{
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            font-family: 'My Soul', cursive;
+        }
+        #week{        
+            display: flex;
+            justify-content: space-evenly;
+            /* border:1px solid red; */
+        }
+        #week>div{
+            box-sizing: border-box;
+            /* border:1px solid red; */
+            /* height:200px; */
+            width:200px;
+            padding:10px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+            /* box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px; */
+            /* box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px; */
+            /* box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px; */
+            border-radius: 20px;
+            margin-top: 15px;
+        }
+        h1{
+            text-align: center;
+            display: inline;
+            font-size: 18px;
+            
+        }
+        .weather{
+            font-size: 22px;
+            color:rgb(247, 88, 30);
+            font-family: 'Rubik Wet Paint', cursive;
+            /* font-family: 'My Soul', cursive; */
+        }
+        .time{
+            color:grey;
+        }
+        button{
+            display: flex;
+            justify-content: left;
+            background-color: transparent;
+            border-radius: 10px;
+        }
+        a{
+            text-decoration: none;
+            color:brown;
+        }
+    </style>
+</head>
+<body>
+    <button><a href="index.html">Home</a></button>
+    <h1>Weeks forecast</h1>
+    <div id="week">
+        <div id="day1">
+            <p class="day1 time"></p>
+            <p class="temp1">temp</p>
+            <div class="imgbox1"><img src="" alt="" class="img1"></div>
+            <p class="humidity1"></p>
+            <p class="weather1 weather">weather</p>
+        </div>
+        <div id="day2">
+            <p class="day2 time"></p>
+            <p class="temp2">temp</p>
+            <div class="imgbox2"><img src="" alt="" class="img2"></div>
+            <p class="humidity2"></p>
+            <p class="weather2 weather">weather</p>
+        </div>
+        <div id="day3 time">
+            <p class="day3 time"></p>
+            <p class="temp3">temp</p>
+            <div class="imgbox3"><img src="" alt="" class="img3"></div>
+            <p class="humidity3"></p>
+            <p class="weather3 weather">weather</p>
+        </div>
+        <div id="day4">
+            <p class="day4 time"></p>
+            <p class="temp4">temp</p>
+            <div class="imgbox4"><img src="" alt="" class="img4"></div>
+            <p class="humidity4"></p>
+            <p class="weather4 weather">weather</p>
+        </div>
+        <div id="day5">
+            <p class="day5 time"></p>
+            <p class="temp5">temp</p>
+            <div class="imgbox5"><img src="" alt="" class="img5"></div>
+            <p class="humidity5"></p>
+            <p class="weather5 weather">weather</p>
+        </div>
+        <div id="day6">
+            <p class="day6 time"></p>
+            <p class="temp6">temp</p>
+            <div class="imgbox6"><img src="" alt="" class="img6"></div>
+            <p class="humidity6"></p>
+            <p class="weather6 weather">weather</p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+
+    window.addEventListener('load',function(){
+
+        let lat = JSON.parse(localStorage.getItem("lat"))
+        let long = JSON.parse(localStorage.getItem("long"))
+
+        let URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=2c5f137129bd69ee7422f91ded5ccebb`;
+        // let URL = `https://api.openweathermap.org/data/2.5/forecast?lat=31.1048&lon=77.1734&appid=2c5f137129bd69ee7422f91ded5ccebb`
+        console.log(lat,long,URL)
+        fetch(URL).then(function(res){
+            // console.log(res);
+            return res.json();
+        })
+        .then(function(res){
+            console.log(res.list);
+            displayWeeksWeather(res);
+        })
+    })
+
+    function displayWeeksWeather(data){
+        document.querySelector(".day1").innerText = `Time:- ${data.list[0].dt_txt}`;
+        document.querySelector(".day2").innerText = `Time:- ${data.list[3].dt_txt}`;
+        document.querySelector(".day3").innerText = `Time:- ${data.list[11].dt_txt}`;
+        document.querySelector(".day4").innerText = `Time:- ${data.list[19].dt_txt}`;
+        document.querySelector(".day5").innerText = `Time:- ${data.list[27].dt_txt}`;
+        document.querySelector(".day6").innerText = `Time:- ${data.list[35].dt_txt}`;
+        
+        document.querySelector(".temp1").innerText = `Temp:- ${data.list[0].main.temp} Deg.`;        
+        document.querySelector(".temp2").innerText = `Temp:- ${data.list[3].main.temp} Deg.`;        
+        document.querySelector(".temp3").innerText = `Temp:- ${data.list[11].main.temp} Deg.`;
+        document.querySelector(".temp4").innerText = `Temp:- ${data.list[19].main.temp} Deg.`;
+        document.querySelector(".temp5").innerText = `Temp:- ${data.list[27].main.temp} Deg.`;
+        document.querySelector(".temp6").innerText = `Temp:- ${data.list[35].main.temp} Deg.`;
+        
+        document.querySelector(".weather1").innerText = data.list[0].weather[0].description;
+        document.querySelector(".weather2").innerText = data.list[3].weather[0].description;
+        document.querySelector(".weather3").innerText = data.list[11].weather[0].description;
+        document.querySelector(".weather4").innerText = data.list[19].weather[0].description;
+        document.querySelector(".weather5").innerText = data.list[27].weather[0].description;
+        document.querySelector(".weather6").innerText = data.list[35].weather[0].description;
+        
+        document.querySelector(".img1").src = "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"        
+        document.querySelector(".img2").src = "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"    
+        document.querySelector(".img3").src = "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+        document.querySelector(".img4").src = "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+        document.querySelector(".img5").src = "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+        document.querySelector(".img6").src = "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+
+        document.querySelector(".humidity1").innerText = `Humidity:- ${data.list[0].main.humidity}%`;
+        document.querySelector(".humidity2").innerText = `Humidity:- ${data.list[3].main.humidity}%`;
+        document.querySelector(".humidity3").innerText = `Humidity:- ${data.list[11].main.humidity}%`;
+        document.querySelector(".humidity4").innerText = `Humidity:- ${data.list[19].main.humidity}%`;
+        document.querySelector(".humidity5").innerText = `Humidity:- ${data.list[27].main.humidity}%`;
+        document.querySelector(".humidity6").innerText = `Humidity:- ${data.list[35].main.humidity}%`;
+        
+        
+    }
+
+
+
+
+    // window.addEventListener("load",() => {
+    //     const params = (new URL(document.location)).searchParams;
+    //     const lat = params.get("lat");
+    //     const long = params.get("long");
+    //     console.log(lat,long);
+    // })
+    // window.onload = getData();
+    // function getData(lat,long){
+        
+    //     const url = JSON.parse(localStorage.getItem("url"));
+    //     console.log(url)
+    //     fetch(url).then(function(res){
+    //         // console.log(res.json())
+    //         return res.json();
+    //     }).then(function(res){
+    //         console.log(res);
+    //         // displayData(res);
+    //     })
+    // }
+</script>

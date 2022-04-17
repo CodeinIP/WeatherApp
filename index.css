@@ -1,0 +1,108 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Rubik Wet Paint', cursive; */
+    font-family: 'My Soul', cursive;
+    /* color:#ffff; */
+}
+h1{
+    text-align: center;
+    color:#ffff;
+}
+.imgbox{
+    width:100px;
+    height:100px;
+    margin:auto;
+    
+}
+.imgbox img{
+    width:100%;
+    height:100%;
+    border-radius: 10%;
+}
+.gmap_canvas {
+    overflow:hidden;
+    background:none!important;
+    height:500px;
+    width:600px;
+    border-radius: 5px;
+}
+#main{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    align-items: center;
+}
+
+#first div{
+    /* display: flex; */
+    /* justify-content: center; */
+
+    margin-bottom: 20px;
+}
+.mapouter{
+    display: inline-block;
+
+    margin-right: 0px;
+    /* border:1px solid red; */
+}
+#city{
+    display: flex;
+    margin:auto;
+    
+    height: 30px;
+    width:600px;
+    border:2px solid orange;
+    border-radius: 10px;
+    background-color: transparent;
+}
+#city:focus{
+    background-color:rgb(119, 115, 92);
+}
+#checkweather{
+    display: flex;
+    margin:auto;
+    border-radius: 8px;
+    /* background-color: black; */
+}
+#myweather{
+    display: flex;
+    margin:auto;
+    border-radius: 8px;
+    /* background-color: black; */
+}
+body{
+    background:url('https://media.istockphoto.com/photos/rainbow-rapeseed-field-picture-id1319975131?b=1&k=20&m=1319975131&s=170667a&w=0&h=f6Xn1tifumO_o8cmYWGHt-wBpeymFayl0WOIsMpEw2g=');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* overflow: hidden; */
+    height:100vh;
+}
+.box{
+    border:1px white;
+    background-color: grey;
+    padding:15px;
+    border-radius: 10px;
+}
+#time{
+    display: flex;
+    width:150px;
+    height:150px;
+    border-radius: 10px;
+    border:1px solid white;
+    box-sizing: border-box;
+    padding:10px;
+    background-color: white;
+    box-shadow: rgba(211, 34, 28, 0.2) 0px 7px 29px 0px;
+}
+#weeksforecast button{
+    border-radius: 5px;
+    border:none;
+}
+#weeksforecast button:hover{
+    cursor: pointer;
+    
+}
+#weeksforecast button a{
+    text-decoration: none;
+    color:#000;
+}
